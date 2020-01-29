@@ -11,16 +11,25 @@ while (true) {
     var inputs2 = readline().split(' ');
     const xop = parseInt(inputs[0]);
     const yop = parseInt(inputs[1]);
+    var boost_ok;
 
 
     if (angle > 80 || angle < -80)
     {
+        if (dist < 700)
            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '0');
+        else if (dist < 1000)
+            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '5');
+        else
+            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '50');
+
     }
     else if (angle < 80 && angle >= -80)
     {
-        if (dist > 800)
-           console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '100');
+        if (dist > 5000 && dist < 9000)
+            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + 'BOOST');
+        else if (dist > 1000)
+            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '100');
         else
             console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '30');
     }
