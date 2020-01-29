@@ -6,33 +6,36 @@ while (true) {
     const y = parseInt(inputs[1]); // y position of your pod
     const nextCheckpointX = parseInt(inputs[2]); // x position of the next check point
     const nextCheckpointY = parseInt(inputs[3]); // y position of the next check point
-    var dist = parseInt(inputs[4]);
-    var angle = parseInt(inputs[5]);
-    var inputs2 = readline().split(' ');
-    const xop = parseInt(inputs[0]);
-    const yop = parseInt(inputs[1]);
-    var boost_ok;
+    var dist = parseInt(inputs[4]); // distance to next check point
+    var angle = parseInt(inputs[5]); // angle pods / next check point
+    var inputs2 = readline().split(' '); // change line (opponent)
+    const xop = parseInt(inputs[0]); // x position of 'opponent'
+    const yop = parseInt(inputs[1]); // y position of 'opponent'
+    var thrust = '100';
 
-
-    if (angle > 80 || angle < -80)
+    if (angle > 70 || angle < -70)
     {
-        if (dist < 700)
-           console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '0');
+        if (dist < 600)
+            thrust = '70';
+        else if (dist < 700)
+            thrust = '0';
         else if (dist < 1000)
-            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '5');
+            thrust = '5';
         else
-            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '50');
+            thrust = '50';
+        console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + thrust);
 
     }
-    else if (angle < 80 && angle >= -80)
+    else if (angle < 70 && angle >= -70)
     {
-        if (dist > 5000 && dist < 9000)
-            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + 'BOOST');
+        if (dist > 7000 && dist < 9000)
+            thrust = 'BOOST';
         else if (dist > 1000)
-            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '100');
+            thrust = '100';
         else
-            console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + '30');
+            thrust = '15';
+        console.log(nextCheckpointX + ' ' + nextCheckpointY + ' ' + thrust);
     }
     else
-        console.log(xop + ' ' + yop + ' ' + '100');
+        console.log(xop + ' ' + yop + ' ' + thrust);
 }
