@@ -3,28 +3,19 @@ fscanf(STDIN, "%d %d %d %d", $LX, $LY, $TX, $TY);
 while (TRUE)
 {
     fscanf(STDIN, "%d", $remainingTurns);
-    if ($LX > $TX)
-    {
-        $res = ($LY > $TY) ? "SE\n" : (($LY < $TY) ? "NE\n" : "E\n");
-        $TY += ($LY > $TY) ? 1 : (($LY < $TY) ? -1 : 0);
-        $TX++;
-    }
-    else if ($LX < $TX)
-    {
-        $res = ($LY > $TY) ? "SW\n" : (($LY < $TY) ? "NW\n" : "W\n");
-        $TY += ($LY > $TY) ? 1 : (($LY < $TY) ? -1 : 0);
-        $TX--;
-    }
-    else if ($LY > $TY)
-    {
-        $res = "S\n";
-        $TY++;
-    }
-    else if ($LY < $TY)
-    {
-        $res = "N\n";
-        $TY--;
-    }
+
+    $res = ($LX > $TX) ? (($LY > $TY) ? "SE\n" : (($LY < $TY) ? "NE\n" : "E\n")) :
+        (($LX < $TX) ? (($LY > $TY) ? "SW\n" : (($LY < $TY) ? "NW\n" : "W\n")) :
+        (($LY > $TY) ? "S\n" : "N\n"));
+
+
+    $TY += ($LX > $TX) ? (($LY > $TY) ? 1 : (($LY < $TY) ? -1 : 0)) :
+        (($LX < $TX) ? (($LY > $TY) ? 1 : (($LY < $TY) ? -1 : 0)) :
+        (($LY > $TY) ? 1 : -1));
+
+
+    $TX += ($LX > $TX) ? 1 : (($LX < $TX) ? -1 : 0);
+
     echo($res);
 }
 ?>
